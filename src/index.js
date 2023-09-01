@@ -1,31 +1,25 @@
 // == Imports
-import { randomHexColor, generateSpanColor } from "./utils";
 
-// == State
-const state = {
-  firstColor: "#e367a4",
-  lastColor: "#48b1f3",
-  direction: "90deg",
-  nbColors: 0,
-};
+import { randomHexColor, generateSpanColor } from "./utils";
+import store from "./store";
 
 // == Rendu dans le DOM
 function renderNbColors() {
-  const { nbColors } = state;
+  const { nbColors } = store.getState();
 
   document.getElementById("nbColors").innerHTML = `
     ${nbColors} couleur(s) générée(s)
   `;
 }
 function renderGradient() {
-  const { direction, firstColor, lastColor } = state;
+  const { direction, firstColor, lastColor } = store.getState();
 
   document.getElementById("gradient").style.background = `
     linear-gradient(${direction},${firstColor},${lastColor})
   `;
 }
 function renderColors() {
-  const { firstColor, lastColor } = state;
+  const { firstColor, lastColor } = store.getState();
 
   const firstSpan = generateSpanColor(firstColor);
   const lastSpan = generateSpanColor(lastColor);
@@ -80,7 +74,11 @@ document.getElementById("toLeft").addEventListener("click", () => {
 });
 
 document.getElementById("toRight").addEventListener("click", () => {
-  state.direction = "90deg";
+  //state.direction = '90deg';
+  //lorsqu'on veut modifier le state on passe par la méthode dispatch du store
+  //cette méthode prend en argument une action , un objet qui doit avoir une propriété "type"
+  //   state.direction = "90deg";
+  store.dispatch({ type: "CHANGE_DIRECTION_TO_RIGHT" });
   renderGradient();
   renderColors();
 });
