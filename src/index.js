@@ -1,8 +1,12 @@
 // == Imports
 
-import { randomHexColor, generateSpanColor } from "./utils";
+import { generateSpanColor } from "./utils";
 import store from "./store";
-
+import {
+  randomizeFirstColor,
+  randomizeLastColor,
+  changeDirection,
+} from "./actions";
 // == Rendu dans le DOM
 function renderNbColors() {
   const { nbColors } = store.getState();
@@ -33,52 +37,34 @@ function renderColors() {
 renderNbColors();
 renderGradient();
 renderColors();
-
+// je m'abonne aux changements de state
+store.subscribe(renderNbColors);
+store.subscribe(renderGradient);
+store.subscribe(renderColors);
 // == Controls
 document.getElementById("randAll").addEventListener("click", () => {
   // objectif de la journée
   // alexa(faitMoiCa);
-
+  store.dispatch(randomizeFirstColor());
+  store.dispatch(randomizeLastColor());
   // debug
   console.log("Random all colors");
   // data
-  state.nbColors += 2;
-  state.firstColor = randomHexColor();
-  state.lastColor = randomHexColor();
   // ui
-  renderNbColors();
-  renderGradient();
-  renderColors();
 });
 
 document.getElementById("randFirst").addEventListener("click", () => {
-  state.nbColors += 1;
-  state.firstColor = randomHexColor();
-  renderNbColors();
-  renderGradient();
-  renderColors();
+  store.dispatch(randomizeFirstColor());
 });
 
 document.getElementById("randLast").addEventListener("click", () => {
-  state.nbColors += 1;
-  state.lastColor = randomHexColor();
-  renderNbColors();
-  renderGradient();
-  renderColors();
+  store.dispatch(randomizeLastColor());
 });
 
 document.getElementById("toLeft").addEventListener("click", () => {
-  state.direction = "270deg";
-  renderGradient();
-  renderColors();
+  store.dispatch(changeDirection("270deg"));
 });
 
 document.getElementById("toRight").addEventListener("click", () => {
-  //state.direction = '90deg';
-  //lorsqu'on veut modifier le state on passe par la méthode dispatch du store
-  //cette méthode prend en argument une action , un objet qui doit avoir une propriété "type"
-  //   state.direction = "90deg";
-  store.dispatch({ type: "CHANGE_DIRECTION_TO_RIGHT" });
-  renderGradient();
-  renderColors();
+  store.dispatch(changeDirection("90deg"));
 });
