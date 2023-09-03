@@ -68,3 +68,15 @@ document.getElementById("toLeft").addEventListener("click", () => {
 document.getElementById("toRight").addEventListener("click", () => {
   store.dispatch(changeDirection("90deg"));
 });
+document.getElementById("to45").addEventListener("click", () => {
+  store.dispatch(changeDirection("45deg"));
+});
+document.getElementById("to135").addEventListener("click", () => {
+  store.dispatch(changeDirection("135deg"));
+});
+document.getElementById("to225").addEventListener("click", () => {
+  store.dispatch(changeDirection("225deg"));
+});
+document.getElementById("to315").addEventListener("click", () => {
+  store.dispatch(changeDirection("315deg"));
+});
