@@ -7,6 +7,6 @@ Possibilité de modifier les couleurs utilisées ainsi que la direction du degra
 
 Html / Css / Scss / React / Redux / React-redux / PropTypes 
 
-## Démarage 🕹
+## Démarrage 🕹
 
 npm i , npm start 
