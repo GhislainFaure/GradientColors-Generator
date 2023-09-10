@@ -7,6 +7,7 @@ import {
   randomizeLastColor,
   changeDirection,
 } from "./actions";
+
 // == Rendu dans le DOM
 function renderNbColors() {
   const { nbColors } = store.getState();

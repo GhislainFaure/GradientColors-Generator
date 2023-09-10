@@ -1,9 +1,16 @@
+import { useSelector } from "react-redux";
 import "./style.scss";
 export default function Colors() {
+  const firstColor = useSelector((state) => {
+    return state.firstColor;
+  });
+  const lastColor = useSelector((state) => {
+    return state.lastColor;
+  });
   return (
     <div id="colors">
-      <span style={{ color: "#e367a4" }}>#e367a4</span>-
-      <span style={{ color: "#48b1f3" }}>#48b1f3</span>
+      <span style={{ color: firstColor }}>{firstColor}</span>-
+      <span style={{ color: lastColor }}>{lastColor}</span>
     </div>
   );
 }

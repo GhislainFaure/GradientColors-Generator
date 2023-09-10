@@ -1,5 +1,9 @@
+import { useSelector } from "react-redux";
 import "./style.scss";
 
 export default function NbColors() {
-  return <div className="nbColors">0 couleur générée</div>;
+  const nbColors = useSelector((state) => {
+    return state.nbColors;
+  });
+  return <div className="nbColors">{nbColors} couleur(s) générée(s)</div>;
 }

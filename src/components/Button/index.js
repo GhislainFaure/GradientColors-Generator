@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import "./style.scss";
 
-export default function Button({ children }) {
+export default function Button({ children, onClick }) {
   return (
-    <button className="button" type="button">
+    <button onClick={onClick} className="button" type="button">
       {children}
     </button>
   );
@@ -11,4 +11,5 @@ export default function Button({ children }) {
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
